@@ -1,114 +1,250 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React from 'react';
+import React, { Component } from "react";
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+    StyleSheet,
+    Text,
+    View,
+    Button,
+    ImageBackground,
+    Keyboard,
+    Platform
+} from "react-native";
+import PlayerInput from "./src/components/PlayerInput/PlayerInput";
+import PlayerList from "./src/components/PlayerList/PlayerList";
+import StartButton from "./src/components/Game/StartButton";
+import courtImage from "./src/assets/court3.jpg";
+import StatsContainer from "./src/components/Stats/StatsContainer";
+import GameContainer from "./src/components/Game/GameContainer";
+import StatsService from "./src/services/StatsService";
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            inputMessage: "Enter Player Name",
+            playersObj: {},
+            initialPlayerObj: {},
+            playerLimit: 3,
+            disableButton: true,
+            gameInProgress: false,
+            showFinalStats: false,
+            gameTime: 0,
+            endGameStats: "",
+            firstActivePlayerName: "",
+            firstActivePlayerKey: null
+        };
+    }
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+    playerAddedHandler = playerName => {
+        const activatePlayer = Object.keys(this.state.playersObj).length > 0 ? false : true;
+
+        const playerKey = new Date().getTime();
+
+        if (activatePlayer == true) {
+            this.setState({
+                firstActivePlayerKey: playerKey,
+                firstActivePlayerName: playerName
+            });
+        }
+
+        thisPlayer = {
+            key: playerKey,
+            name: playerName,
+            active: activatePlayer,
+            clockedIn: false,
+            timePlayedSec: 0,
+            timePlayedMin: "0:00",
+            percentOfGamePlayed: 0,
+            points: 0,
+            shotAttempts: 0,
+            shotsMade: 0,
+            shootingPercentage: 0,
+            twoPointAttempts: 0,
+            twoPointMade: 0,
+            threePointAttempts: 0,
+            threePointMade: 0,
+            threePointPercentage: 0,
+            rebounds: 0,
+            offRebounds: 0,
+            defRebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            turnOvers: 0,
+            foulsCommitted: 0,
+            technicals: 0,
+            freeThrowAttempts: 0,
+            freeThrowMade: 0,
+            freeThrowPercentage: 0,
+            pointsPerMin: 0,
+            shotsPerMin: 0,
+            reboundsPerMin: 0,
+            assistsPerMin: 0,
+            blocksPerMin: 0,
+            turnOversPerMin: 0,
+            foulsPerMin: 0,
+            efficiencyRating: 0,
+            assistToTurnOver: 0
+        };
+        Keyboard.dismiss();
+        this.setState(prevState => {
+            return {
+                playerObj: (prevState.playersObj[thisPlayer.key] = thisPlayer),
+                disableButton: false
+            };
+        });
+    };
+
+    toggleCheckIn = key => {
+        this.setState(prevState => {
+            prevState.playersObj[key].clockedIn = !prevState.playersObj[key].clockedIn;
+            return {
+                players: prevState.playersObj
+            };
+        });
+    };
+
+    playerDeletedHandler = key => {
+        buttonOff = Object.keys(this.state.playersObj).length > 1 ? false : true;
+        this.setState(prevState => {
+            delete prevState.playersObj[key];
+            return {
+                players: prevState.playersObj,
+                inputMessage: "Enter Player Name",
+                disableButton: buttonOff
+            };
+        });
+    };
+
+    startTheGameHandler = index => {
+        // console.log(this.state.endGameStats);
+        this.setState(prevState => {
+            return {
+                endGameStats: {},
+                gameInProgress: true
+            };
+        });
+    };
+
+    gameEndHandler = (endGameTime, endGameStats, endGameSeconds) => {
+        Object.keys(endGameStats).map(key => {
+            endGameStats[key].clockedIn = false;
+        });
+        const calculatedStats = StatsService.calculateFinalStats(
+            endGameStats,
+            endGameSeconds
+        );
+        this.setState(prevState => {
+            return {
+                disableButton: true,
+                playersObj: {},
+                gameInProgress: false,
+                endGameStats: endGameStats,
+                gameTime: endGameTime
+            };
+        });
+    };
+
+    showFinalStats = () => {
+        this.setState({
+            showFinalStats: true
+        });
+    };
+
+    hideFinalStats = () => {
+        this.setState({
+            showFinalStats: false
+        });
+    };
+
+    render() {
+        let finalStatsButton =
+            this.state.endGameStats != "" ? (
+                <View>
+                    <Button
+                        style={styles.baseButton}
+                        title="Show Game Stats"
+                        color="blue"
+                        onPress={() => {
+                            this.showFinalStats();
+                        }}
+                    />
+                </View>
+            ) : null;
+
+        let endGameView = null;
+        if (this.state.showFinalStats == true) {
+            endGameView = (
+                <StatsContainer
+                    showFinalStats={this.state.showFinalStats}
+                    hideFinalStats={this.hideFinalStats}
+                    finalStats={this.state.endGameStats}
+                    gameTime={this.state.gameTime}
+                />
+            );
+        }
+
+        return (
+            <ImageBackground source={courtImage} style={{ width: "100%", height: "100%" }}>
+                <View style={styles.container}>
+                    {Object.keys(this.state.playersObj).length > 0 ? (
+                        <GameContainer
+                            gamePlayers={this.state.playersObj}
+                            initialPlayers={this.state.initialPlayerObj}
+                            gameInProgress={this.state.gameInProgress}
+                            gameEnd={this.gameEndHandler}
+                            firstActivePlayerKey={this.state.firstActivePlayerKey}
+                            firstActivePlayerName={this.state.firstActivePlayerName}
+                        />
+                    ) : null}
+
+                    {endGameView}
+
+                    <StartButton
+                        startTheGame={this.startTheGameHandler}
+                        allowGame={this.state.disableButton}
+                    />
+                    <Text style={styles.welcome}>HoopTrack</Text>
+                    <PlayerInput
+                        onPlayerAdded={this.playerAddedHandler}
+                        maxPlayers={this.state.playerLimit}
+                        playerCount={Object.keys(this.state.playersObj).length}
+                    />
+                    <PlayerList
+                        players={this.state.players}
+                        playerObj={this.state.playersObj}
+                        onItemDeleted={this.playerDeletedHandler}
+                        onPlayerCheckIn={this.toggleCheckIn}
+                    />
+                    {finalStatsButton}
+                </View>
+            </ImageBackground>
+        );
+    }
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+    container: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        backgroundColor: "rgba(255, 255, 255, 0.6)",
+        marginTop: 0,
+        marginBottom: 0,
+        paddingTop: Platform.OS === "ios" ? 50 : 15,
+        paddingBottom: 30
+    },
+    welcome: {
+        fontSize: 60,
+        color: "#cc5500",
+        fontWeight: "bold",
+        textAlign: "center",
+        margin: 10
+    },
+    courtPic: {
+        height: 500,
+        width: 300,
+        zIndex: -5,
+        transform: [{ rotate: "90deg" }]
+    }
 });
-
-export default App;
