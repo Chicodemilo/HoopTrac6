@@ -25,27 +25,42 @@ import {
 // TODO Fix View overlap on buttons on android
 // TODO restart a game
 // TODO edit player stats
+// TODO Shot percentage problem
 
 class GameContainer extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activePlayers: props.gamePlayers,
-      oldActivePlayers: null,
-      haveUndo: false,
-      gameTime: 0,
-      gameMin: '0:00',
-      gameActive: true,
-      timerString: 'Pause Game Time',
-      activePlayerKey: null,
-      activePlayerName: '',
-      clockInWarning: false,
-    };
+    if (this.props.gameRestart === true) {
+      this.state = {
+        activePlayers: props.gamePlayers,
+        oldActivePlayers: props.gamePlayers,
+        haveUndo: false,
+        gameTime: this.props.gameTime,
+        gameMin: '',
+        gameActive: true,
+        timerString: 'Pause Game Time',
+        activePlayerKey: props.firstActivePlayerKey,
+        activePlayerName: props.firstActivePlayerName,
+        clockInWarning: false,
+      };
+    } else {
+      this.state = {
+        activePlayers: props.gamePlayers,
+        oldActivePlayers: props.gamePlayers,
+        haveUndo: false,
+        gameTime: 0,
+        gameMin: '0:00',
+        gameActive: true,
+        timerString: 'Pause Game Time',
+        activePlayerKey: props.firstActivePlayerKey,
+        activePlayerName: props.firstActivePlayerName,
+        clockInWarning: false,
+      };
+    }
   }
 
   componentDidMount() {
-    let timer = setInterval(this.timeTick, 1000);
+    setInterval(this.timeTick, 1000);
   }
 
   timeTick = () => {
@@ -63,25 +78,6 @@ class GameContainer extends Component {
       });
     }
   };
-
-  componentWillReceiveProps(props) {
-    this.setActivePlayer(
-      props.firstActivePlayerKey,
-      props.firstActivePlayerName,
-    );
-
-    let activePlayersImmutable = {};
-    Object.keys(props.gamePlayers).map(key => {
-      let stats = {...props.gamePlayers[key]};
-      activePlayersImmutable[key] = stats;
-    });
-
-    this.setState(prevState => {
-      return {
-        oldActivePlayers: activePlayersImmutable,
-      };
-    });
-  }
 
   setActivePlayer = (thisPlayerKey, thisPlayerName) => {
     this.setState({
@@ -121,7 +117,7 @@ class GameContainer extends Component {
       let stats = {...activePlayers[key]};
       activePlayersImmutable[key] = stats;
     });
-    newOldActivePlayers = this.state.oldActivePlayers;
+    let newOldActivePlayers = this.state.oldActivePlayers;
     this.setState(prevState => {
       return {
         oldActivePlayers: activePlayersImmutable,
@@ -151,10 +147,10 @@ class GameContainer extends Component {
 
   updateStats = action => {
     if (this.state.activePlayers[this.state.activePlayerKey] != undefined) {
-      nowStateActive = {...this.state.activePlayers};
+      let nowStateActive = {...this.state.activePlayers};
       this.addToOldActivePlayers(nowStateActive);
       this.clockInTest();
-      newPlayers = StatsService.updateStat(
+      let newPlayers = StatsService.updateStat(
         this.state.activePlayers,
         this.state.activePlayerKey,
         action,
@@ -185,7 +181,7 @@ class GameContainer extends Component {
   };
 
   resetPlayerStats = () => {
-    newPlayers = StatsService.resetPlayerStats(
+    let newPlayers = StatsService.resetPlayerStats(
       this.state.activePlayers,
       this.state.activePlayerKey,
       this.state.activePlayerName,
@@ -196,7 +192,7 @@ class GameContainer extends Component {
   };
 
   undoButtonHandler = () => {
-    newPlayers = StatsService.undoButtonHandler(
+    let newPlayers = StatsService.undoButtonHandler(
       this.state.activePlayers,
       this.state.oldActivePlayers,
     );
@@ -218,13 +214,11 @@ class GameContainer extends Component {
         this.state.activePlayers[this.state.activePlayerKey].freeThrowMade;
     }
 
-    {
-      this.state.gameActive ? null : (
-        <View style={styles.overlay} pointerEvents="none" />
-      );
-    }
+    this.state.gameActive ? null : (
+      <View style={styles.overlay} pointerEvents="none" />
+    );
 
-    activeWarning = this.state.clockInWarning ? (
+    let activeWarning = this.state.clockInWarning ? (
       <View style={styles.warningBox}>
         <Text style={styles.warningText}>Clock In Player?</Text>
       </View>
@@ -246,7 +240,7 @@ class GameContainer extends Component {
       undoButton = (
         <TouchableOpacity style={styles.resetButtonsInactive}>
           <View>
-            <Text style={styles.resetText}></Text>
+            <Text style={styles.resetText} />
           </View>
         </TouchableOpacity>
       );

@@ -46,6 +46,7 @@ export default class App extends Component {
       this.setState({
         firstActivePlayerKey: playerKey,
         firstActivePlayerName: playerName,
+        gameTime: 0,
       });
     }
 
@@ -121,31 +122,37 @@ export default class App extends Component {
   };
 
   startTheGameHandler = index => {
-    // console.log(this.state.endGameStats);
-    this.setState(prevState => {
-      return {
-        endGameStats: {},
-        gameInProgress: true,
-      };
-    });
+    if (this.state.gameRestart === false) {
+      this.setState(prevState => {
+        return {
+          endGameStats: {},
+          gameInProgress: true,
+        };
+      });
+    }
+    if (this.state.gameRestart === true) {
+      this.setState(prevState => {
+        return {
+          playersObj: prevState.endGameStats.players,
+          gameInProgress: true,
+        };
+      });
+    }
   };
 
-  gameEndHandler = (endGameTime, endGameStats, endGameSeconds) => {
+  gameEndHandler = (endGameMin, endGameStats, endGameTime) => {
     Object.keys(endGameStats).map(key => {
       endGameStats[key].clockedIn = false;
     });
 
-    const calculatedStats = StatsService.calculateFinalStats(
-      endGameStats,
-      endGameSeconds,
-    );
+    StatsService.calculateFinalStats(endGameStats, endGameTime);
 
     const endGame = {
       id: this.makeGameId(),
       date: format(new Date(), 'yyyy-MM-dd'),
       name: 'BBall Game: ' + format(new Date(), 'M/d/yyyy'),
       players: endGameStats,
-      gameTime: endGameTime,
+      gameTime: endGameMin,
     };
 
     this.setState(prevState => {
@@ -163,6 +170,28 @@ export default class App extends Component {
     let id = Math.floor(getTime(new Date()) / 1000);
     id = id + Math.floor(Math.random() * 10000);
     return id;
+  };
+
+  restartGameHandler = () => {
+    this.setState(
+      {
+        gameRestart: true,
+      },
+      () => {
+        this.startTheGameHandler();
+      },
+    );
+  };
+
+  startNewGameHandler = () => {
+    this.setState(
+      {
+        gameRestart: false,
+      },
+      () => {
+        this.startTheGameHandler();
+      },
+    );
   };
 
   showFinalStats = () => {
@@ -195,7 +224,7 @@ export default class App extends Component {
             title="Resume Game"
             color="#448ccf"
             onPress={() => {
-              this.showFinalStats();
+              this.restartGameHandler();
             }}
           />
         </View>
@@ -226,13 +255,15 @@ export default class App extends Component {
               gameEnd={this.gameEndHandler}
               firstActivePlayerKey={this.state.firstActivePlayerKey}
               firstActivePlayerName={this.state.firstActivePlayerName}
+              gameRestart={this.state.gameRestart}
+              gameTime={this.state.gameTime}
             />
           ) : null}
 
           {endGameView}
 
           <StartButton
-            startTheGame={this.startTheGameHandler}
+            startTheGame={this.startNewGameHandler}
             allowGame={this.state.disableButton}
           />
           <Text style={styles.welcome}>HoopTrac</Text>
