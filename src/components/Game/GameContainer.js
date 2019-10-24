@@ -23,9 +23,7 @@ import {
 } from 'react-native-responsive-screen';
 
 // TODO Fix View overlap on buttons on android
-// TODO restart a game
 // TODO edit player stats
-// TODO Shot percentage problem
 
 class GameContainer extends Component {
   constructor(props) {

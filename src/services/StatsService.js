@@ -136,13 +136,13 @@ const StatsService = {
       );
     }
 
+    activePlayers[activePlayerKey].shotsMade =
+      activePlayers[activePlayerKey].shotsMade + 1;
+
     activePlayers[activePlayerKey].shootingPercentage = this.shootingPercent(
       activePlayers[activePlayerKey].shotsMade,
       activePlayers[activePlayerKey].shotAttempts,
     );
-
-    activePlayers[activePlayerKey].shotsMade =
-      activePlayers[activePlayerKey].shotsMade + 1;
 
     return activePlayers;
   },
