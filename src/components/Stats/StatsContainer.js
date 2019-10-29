@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   gameView: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     color: 'green',
     marginTop: 0,
     marginBottom: 0,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   statsBox: {
     // height: hp("84%")
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
   },
 });
 

@@ -17,6 +17,7 @@ import ReboundButtonContainer from './Buttons/ReboundButtonContainer';
 import FreeThrowButtonContainer from './Buttons/FreeThrowButtonContainer';
 import AssistButtonContainer from './Buttons/AssistButtonContainer';
 import FoulButtonContainer from './Buttons/FoulButtonContainer';
+import EditStatsContainer from '../EditPlayerStats/EditStatsContainer';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -40,6 +41,7 @@ class GameContainer extends Component {
         activePlayerKey: props.firstActivePlayerKey,
         activePlayerName: props.firstActivePlayerName,
         clockInWarning: false,
+        showEditStats: false,
       };
     } else {
       this.state = {
@@ -53,8 +55,10 @@ class GameContainer extends Component {
         activePlayerKey: props.firstActivePlayerKey,
         activePlayerName: props.firstActivePlayerName,
         clockInWarning: false,
+        showEditStats: false,
       };
     }
+    console.log('HERE: GameContainer.js 61');
   }
 
   componentDidMount() {
@@ -115,7 +119,7 @@ class GameContainer extends Component {
       let stats = {...activePlayers[key]};
       activePlayersImmutable[key] = stats;
     });
-    let newOldActivePlayers = this.state.oldActivePlayers;
+    // let newOldActivePlayers = this.state.oldActivePlayers;
     this.setState(prevState => {
       return {
         oldActivePlayers: activePlayersImmutable,
@@ -200,7 +204,32 @@ class GameContainer extends Component {
     });
   };
 
+  showEditStats = () => {
+    this.setState({
+      showEditStats: true,
+    });
+  };
+
+  hideEditStats = () => {
+    this.setState({
+      showEditStats: false,
+    });
+  };
+
   render() {
+    let thisEditStatsContainer = null;
+
+    if (this.state.showEditStats) {
+      thisEditStatsContainer = (
+        <EditStatsContainer
+          playerStats={this.state.activePlayers}
+          activePlayerKey={this.state.activePlayerKey}
+          showEditStats={this.state.showEditStats}
+          hideEditStats={this.hideEditStats}
+        />
+      );
+    }
+
     let clockInStatus = false;
     let freeThrowMiss = 0;
 
@@ -221,6 +250,16 @@ class GameContainer extends Component {
         <Text style={styles.warningText}>Clock In Player?</Text>
       </View>
     ) : null;
+
+    let editStatsButton = (
+      <TouchableOpacity
+        style={styles.editStatsButton}
+        onPress={this.showEditStats}>
+        <View>
+          <Text style={styles.editStatsText}>edit</Text>
+        </View>
+      </TouchableOpacity>
+    );
 
     let undoButton = null;
 
@@ -246,6 +285,7 @@ class GameContainer extends Component {
 
     return (
       <Modal visible={this.props.gameInProgress} animationType="slide">
+        {thisEditStatsContainer}
         <View style={styles.gameView}>
           <PlayerBox
             gamePlayers={this.state.activePlayers}
@@ -365,6 +405,7 @@ class GameContainer extends Component {
                   : null}
               </Text>
             </View>
+            {editStatsButton}
             {activeWarning}
           </View>
           <View style={styles.endGame}>
@@ -485,12 +526,21 @@ const styles = StyleSheet.create({
   warningText: {
     color: '#00b3ff',
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 15,
   },
   warningBox: {
     position: 'absolute',
     right: 5,
-    top: 30,
+    top: 42,
+  },
+  editStatsButton: {
+    position: 'absolute',
+    right: 5,
+    top: 26,
+  },
+  editStatsText: {
+    color: '#858585',
+    fontSize: 12,
   },
   activePlayerNameBox: {
     position: 'absolute',

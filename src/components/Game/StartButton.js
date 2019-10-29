@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomColor: '#521800',
     borderBottomWidth: 1,
+    borderTopColor: '#521800',
+    borderTopWidth: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 12,
     alignSelf: 'stretch',
-    backgroundColor: '#cc5500',
+    backgroundColor: '#066901',
     alignItems: 'center',
   },
   disableButton: {

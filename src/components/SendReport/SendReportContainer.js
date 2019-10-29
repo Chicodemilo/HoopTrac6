@@ -44,6 +44,8 @@ class SendReportContainer extends Component {
 const styles = StyleSheet.create({
   reportButtons: {
     marginTop: Platform.OS === 'ios' ? 40 : 15,
+    // TODO add floor bg to this
+    // backgroundColor: 'rgba(255, 255, 255, 0.8)',
     borderBottomColor: 'black',
     borderBottomWidth: 1,
   },
