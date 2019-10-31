@@ -210,6 +210,8 @@ const styles = StyleSheet.create({
     width: '93%',
     borderColor: '#ccc',
     backgroundColor: 'white',
+    color: 'green',
+    fontWeight: 'bold',
     borderWidth: 0.5,
     padding: 5,
     margin: 5,

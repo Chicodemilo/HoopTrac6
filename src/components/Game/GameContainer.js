@@ -24,6 +24,7 @@ import {
 } from 'react-native-responsive-screen';
 
 // TODO Fix View overlap on buttons on android
+// TODO Fix Players time goes 2X too fast when game is restarted
 // TODO edit player stats
 
 class GameContainer extends Component {
@@ -58,7 +59,6 @@ class GameContainer extends Component {
         showEditStats: false,
       };
     }
-    console.log('HERE: GameContainer.js 61');
   }
 
   componentDidMount() {
@@ -226,6 +226,7 @@ class GameContainer extends Component {
           activePlayerKey={this.state.activePlayerKey}
           showEditStats={this.state.showEditStats}
           hideEditStats={this.hideEditStats}
+          makeActivePlayer={this.setActivePlayer}
         />
       );
     }

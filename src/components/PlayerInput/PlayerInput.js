@@ -68,7 +68,9 @@ const styles = StyleSheet.create({
   playerInput: {
     height: 50,
     width: '60%',
+    color: 'green',
     // borderColor: "#6b5d5c",
+    fontWeight: 'bold',
     backgroundColor: 'white',
     // borderWidth: 0.5,
     padding: 4,
