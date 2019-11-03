@@ -12,6 +12,7 @@ import {
 import StatsService from '../../services/StatsService';
 import courtImage from '../../../src/assets/court3.jpg';
 import AdjusterItem from './AdjusterItem';
+import editActions from './StatItems';
 
 import {
   widthPercentageToDP as wp,
@@ -25,8 +26,9 @@ class EditStatsContainer extends Component {
       playerStats: props.playerStats,
       activePlayerKey: props.activePlayerKey,
       hideEditStats: props.hideEditStats,
+      theseActions: editActions,
     };
-    console.log(this.state.playerStats[this.state.activePlayerKey]);
+    // console.log(this.state.playerStats[this.state.activePlayerKey]);
   }
 
   updateStats = action => {
@@ -54,69 +56,16 @@ class EditStatsContainer extends Component {
   };
 
   render() {
-    let editActions = {
-      shotMadeTwo: {
-        friendly: '2pt Made',
-        objectName: 'twoPointMade',
-      },
-      shotMadeThree: {
-        friendly: '3pt Made',
-        objectName: 'threePointMade',
-      },
-      shotMissTwo: {
-        friendly: '2pt Miss',
-        objectName: 'twoPointAttempts',
-      },
-      shotMissThree: {
-        friendly: '3pt Miss',
-        objectName: 'threePointAttempts',
-      },
-      defensiveRebound: {
-        friendly: 'Def Reb',
-        objectName: 'defRebounds',
-      },
-      offensiveRebound: {
-        friendly: 'Off Reb',
-        objectName: 'offRebounds',
-      },
-      freeThrowMade: {
-        friendly: 'Freethrow Made',
-        objectName: 'freeThrowMade',
-      },
-      freeThrowMiss: {
-        friendly: 'Freethrow Miss',
-        objectName: 'freeThrowAttempts',
-      },
-      assist: {
-        friendly: 'Assists',
-        objectName: 'assists',
-      },
-      steals: {
-        friendly: 'Steals',
-        objectName: 'steals',
-      },
-      block: {
-        friendly: 'Blocks',
-        objectName: 'blocks',
-      },
-      fouls: {
-        friendly: 'Fouls',
-        objectName: 'foulsCommitted',
-      },
-      turnOvers: {
-        friendly: 'TurnOvers',
-        objectName: 'turnOvers',
-      },
-    };
-
-    const adjusterItems = Object.keys(editActions).map(key => (
+    const adjusterItems = Object.keys(
+      this.state.theseActions['editActions'],
+    ).map(key => (
       <AdjusterItem
         key={key}
         action={key}
-        friendlyName={editActions[key].friendly}
+        friendlyName={this.state.theseActions['editActions'][key].friendly}
         statValue={
           this.state.playerStats[this.state.activePlayerKey][
-            editActions[key].objectName
+            this.state.theseActions['editActions'][key].objectName
           ]
         }
         updateStats={() => {

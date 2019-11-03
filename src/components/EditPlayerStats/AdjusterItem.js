@@ -25,12 +25,12 @@ class AdjusterItem extends Component {
         <Text style={styles.statBox}>{this.state.statValue}</Text>
         <Button
           style={styles.statButton}
-          icon={<Icon name="plus" size={16} color="white" />}
+          icon={<Icon name="plus" size={12} color="white" />}
           iconRight
         />
         <Button
           style={styles.statButton}
-          icon={<Icon name="minus" size={16} color="white" />}
+          icon={<Icon name="minus" size={12} color="white" />}
           iconRight
         />
       </View>
@@ -41,22 +41,29 @@ class AdjusterItem extends Component {
 const styles = StyleSheet.create({
   elementBox: {
     flexDirection: 'row',
-    padding: 5,
+    padding: 2,
     borderBottomColor: '#c9c9c9',
     borderBottomWidth: 1,
-    height: 45,
+    height: 32,
     justifyContent: 'center',
     alignItems: 'center',
   },
   actionBox: {
+    color: '#8a8a8a',
+    fontSize: 11,
+    fontWeight: 'bold',
     flex: 3,
   },
   statBox: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#0050d1',
     flex: 1,
   },
   statButton: {
     flex: 2,
-    padding: 2,
+    padding: 1,
+    marginLeft: 7,
   },
 });
 
