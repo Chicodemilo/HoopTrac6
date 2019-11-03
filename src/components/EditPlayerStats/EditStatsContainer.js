@@ -22,6 +22,7 @@ import {
 class EditStatsContainer extends Component {
   constructor(props) {
     super(props);
+    // console.log(props.playerStats[props.activePlayerKey]);
     this.state = {
       playerStats: props.playerStats,
       activePlayerKey: props.activePlayerKey,
@@ -31,23 +32,24 @@ class EditStatsContainer extends Component {
     // console.log(this.state.playerStats[this.state.activePlayerKey]);
   }
 
-  updateStats = action => {
-    if (this.state.activePlayers[this.state.activePlayerKey] != undefined) {
+  updateStats = (action, direction) => {
+    if (this.state.playerStats[this.state.activePlayerKey] != undefined) {
       //   let nowStateActive = {...this.state.activePlayers};
       let newPlayers = StatsService.updateStat(
-        this.state.activePlayers,
+        this.state.playerStats,
         this.state.activePlayerKey,
         action,
+        direction,
       );
       this.setState({
-        activePlayers: newPlayers,
+        playerStats: newPlayers,
       });
     }
   };
 
   savePlayerName = name => {
     this.props.makeActivePlayer(this.state.activePlayerKey, name);
-    let newPlayers = (this.state.playerStats[
+    let newPlayers = (this.state.activePlayers[
       this.state.activePlayerKey
     ].name = name);
     this.setState({
@@ -68,8 +70,11 @@ class EditStatsContainer extends Component {
             this.state.theseActions['editActions'][key].objectName
           ]
         }
-        updateStats={() => {
-          this.updateStats(key);
+        updateStatsUp={() => {
+          this.updateStats(key, 1);
+        }}
+        updateStatsDown={() => {
+          this.updateStats(key, -1);
         }}
       />
     ));
@@ -95,6 +100,18 @@ class EditStatsContainer extends Component {
               maxLength={10}
             />
             <View style={styles.statsAdjusters}>{adjusterItems}</View>
+            <Text>
+              Points:{' '}
+              {this.state.playerStats[this.state.activePlayerKey].points}
+            </Text>
+            <Text>
+              Rebounds:{' '}
+              {this.state.playerStats[this.state.activePlayerKey].rebounds}
+            </Text>
+            <Text>
+              Total Shot Attempts:{' '}
+              {this.state.playerStats[this.state.activePlayerKey].shotAttempts}
+            </Text>
           </View>
         </ImageBackground>
       </Modal>

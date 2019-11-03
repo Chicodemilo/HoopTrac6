@@ -12,7 +12,8 @@ class AdjusterItem extends Component {
     super(props);
     this.state = {
       action: this.props.action,
-      updateStats: this.props.updateStats,
+      updateStatsUp: this.props.updateStatsUp,
+      updateStatsDown: this.props.updateStatsDown,
       friendlyName: this.props.friendlyName,
       statValue: this.props.statValue,
     };
@@ -24,6 +25,7 @@ class AdjusterItem extends Component {
         <Text style={styles.actionBox}>{this.state.friendlyName}</Text>
         <Text style={styles.statBox}>{this.state.statValue}</Text>
         <Button
+          onPress={this.state.updateStatsUp}
           style={styles.statButton}
           icon={<Icon name="plus" size={12} color="white" />}
           iconRight

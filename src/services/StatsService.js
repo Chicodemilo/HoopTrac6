@@ -62,71 +62,73 @@ const StatsService = {
     return finalStats;
   },
 
-  updateStat: function(activePlayers, activePlayerKey, action) {
+  updateStat: function(activePlayers, activePlayerKey, action, direction) {
     switch (action) {
       case 'shotMadeTwo':
-        return this.shotMade(activePlayers, activePlayerKey, 2);
+        return this.shotMade(activePlayers, activePlayerKey, 2, direction);
 
       case 'shotMadeThree':
-        return this.shotMade(activePlayers, activePlayerKey, 3);
+        return this.shotMade(activePlayers, activePlayerKey, 3, direction);
 
       case 'shotMissTwo':
-        return this.shotMissed(activePlayers, activePlayerKey, 2);
+        return this.shotMissed(activePlayers, activePlayerKey, 2, direction);
 
       case 'shotMissThree':
-        return this.shotMissed(activePlayers, activePlayerKey, 3);
+        return this.shotMissed(activePlayers, activePlayerKey, 3, direction);
 
       case 'defensiveRebound':
-        return this.defensiveRebound(activePlayers, activePlayerKey);
+        return this.defensiveRebound(activePlayers, activePlayerKey, direction);
 
       case 'offensiveRebound':
-        return this.offensiveRebound(activePlayers, activePlayerKey);
+        return this.offensiveRebound(activePlayers, activePlayerKey, direction);
 
       case 'freeThrowMade':
-        return this.freeThrowMade(activePlayers, activePlayerKey);
+        return this.freeThrowMade(activePlayers, activePlayerKey, direction);
 
       case 'freeThrowMiss':
-        return this.freeThrowMiss(activePlayers, activePlayerKey);
+        return this.freeThrowMiss(activePlayers, activePlayerKey, direction);
 
       case 'assist':
-        return this.assist(activePlayers, activePlayerKey);
+        return this.assist(activePlayers, activePlayerKey, direction);
 
       case 'block':
-        return this.block(activePlayers, activePlayerKey);
+        return this.block(activePlayers, activePlayerKey, direction);
 
       case 'fouls':
-        return this.fouls(activePlayers, activePlayerKey);
+        return this.fouls(activePlayers, activePlayerKey, direction);
 
       case 'steals':
-        return this.steals(activePlayers, activePlayerKey);
+        return this.steals(activePlayers, activePlayerKey, direction);
 
       case 'turnOvers':
-        return this.turnOvers(activePlayers, activePlayerKey);
+        return this.turnOvers(activePlayers, activePlayerKey, direction);
 
       default:
         break;
     }
   },
 
-  shotMade: function(activePlayers, activePlayerKey, points) {
+  shotMade: function(activePlayers, activePlayerKey, points, direction) {
     activePlayers[activePlayerKey].points =
       activePlayers[activePlayerKey].points + points;
 
-    activePlayers[activePlayerKey].shotAttempts =
-      activePlayers[activePlayerKey].shotAttempts + 1;
-
     if (points == 2) {
       activePlayers[activePlayerKey].twoPointAttempts =
-        activePlayers[activePlayerKey].twoPointAttempts + 1;
+        activePlayers[activePlayerKey].twoPointAttempts + direction;
 
       activePlayers[activePlayerKey].twoPointMade =
-        activePlayers[activePlayerKey].twoPointMade + 1;
+        activePlayers[activePlayerKey].twoPointMade + direction;
+
+      activePlayers[activePlayerKey].twoPointPercentage = this.shootingPercent(
+        activePlayers[activePlayerKey].twoPointMade,
+        activePlayers[activePlayerKey].twoPointAttempts,
+      );
     } else {
       activePlayers[activePlayerKey].threePointAttempts =
-        activePlayers[activePlayerKey].threePointAttempts + 1;
+        activePlayers[activePlayerKey].threePointAttempts + direction;
 
       activePlayers[activePlayerKey].threePointMade =
-        activePlayers[activePlayerKey].threePointMade + 1;
+        activePlayers[activePlayerKey].threePointMade + direction;
 
       activePlayers[
         activePlayerKey
@@ -137,7 +139,11 @@ const StatsService = {
     }
 
     activePlayers[activePlayerKey].shotsMade =
-      activePlayers[activePlayerKey].shotsMade + 1;
+      activePlayers[activePlayerKey].shotsMade + direction;
+
+    activePlayers[activePlayerKey].shotAttempts =
+      activePlayers[activePlayerKey].shotsMade +
+      activePlayers[activePlayerKey].shotsMiss;
 
     activePlayers[activePlayerKey].shootingPercentage = this.shootingPercent(
       activePlayers[activePlayerKey].shotsMade,
@@ -147,16 +153,33 @@ const StatsService = {
     return activePlayers;
   },
 
-  shotMissed: function(activePlayers, activePlayerKey, points) {
+  shotMissed: function(activePlayers, activePlayerKey, points, direction) {
+    activePlayers[activePlayerKey].shotsMiss =
+      activePlayers[activePlayerKey].shotsMiss + direction;
+
     activePlayers[activePlayerKey].shotAttempts =
-      activePlayers[activePlayerKey].shotAttempts + 1;
+      activePlayers[activePlayerKey].shotsMiss +
+      activePlayers[activePlayerKey].shotsMade;
 
     if (points == 2) {
+      activePlayers[activePlayerKey].twoPointMiss =
+        activePlayers[activePlayerKey].twoPointMiss + direction;
+
       activePlayers[activePlayerKey].twoPointAttempts =
-        activePlayers[activePlayerKey].twoPointAttempts + 1;
+        activePlayers[activePlayerKey].twoPointMiss +
+        activePlayers[activePlayerKey].twoPointMade;
+
+      activePlayers[activePlayerKey].twoPointPercentage = this.shootingPercent(
+        activePlayers[activePlayerKey].twoPointMade,
+        activePlayers[activePlayerKey].twoPointAttempts,
+      );
     } else {
+      activePlayers[activePlayerKey].threePointMiss =
+        activePlayers[activePlayerKey].threePointMiss + direction;
+
       activePlayers[activePlayerKey].threePointAttempts =
-        activePlayers[activePlayerKey].threePointAttempts + 1;
+        activePlayers[activePlayerKey].threePointMiss +
+        activePlayers[activePlayerKey].threePointMade;
 
       activePlayers[
         activePlayerKey
@@ -174,35 +197,36 @@ const StatsService = {
     return activePlayers;
   },
 
-  defensiveRebound: function(activePlayers, activePlayerKey) {
+  defensiveRebound: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].defRebounds =
-      activePlayers[activePlayerKey].defRebounds + 1;
+      activePlayers[activePlayerKey].defRebounds + direction;
 
     activePlayers[activePlayerKey].rebounds =
-      activePlayers[activePlayerKey].rebounds + 1;
+      activePlayers[activePlayerKey].rebounds + direction;
 
     return activePlayers;
   },
 
-  offensiveRebound: function(activePlayers, activePlayerKey) {
+  offensiveRebound: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].offRebounds =
-      activePlayers[activePlayerKey].offRebounds + 1;
+      activePlayers[activePlayerKey].offRebounds + direction;
 
     activePlayers[activePlayerKey].rebounds =
-      activePlayers[activePlayerKey].rebounds + 1;
+      activePlayers[activePlayerKey].rebounds + direction;
 
     return activePlayers;
   },
 
-  freeThrowMade: function(activePlayers, activePlayerKey) {
+  freeThrowMade: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].freeThrowMade =
-      activePlayers[activePlayerKey].freeThrowMade + 1;
+      activePlayers[activePlayerKey].freeThrowMade + direction;
 
     activePlayers[activePlayerKey].freeThrowAttempts =
-      activePlayers[activePlayerKey].freeThrowAttempts + 1;
+      activePlayers[activePlayerKey].freeThrowMade +
+      activePlayers[activePlayerKey].freeThrowMiss;
 
     activePlayers[activePlayerKey].points =
-      activePlayers[activePlayerKey].points + 1;
+      activePlayers[activePlayerKey].points + direction;
 
     activePlayers[activePlayerKey].freeThrowPercentage = this.shootingPercent(
       activePlayers[activePlayerKey].freeThrowMade,
@@ -212,9 +236,13 @@ const StatsService = {
     return activePlayers;
   },
 
-  freeThrowMiss: function(activePlayers, activePlayerKey) {
+  freeThrowMiss: function(activePlayers, activePlayerKey, direction) {
+    activePlayers[activePlayerKey].freeThrowMiss =
+      activePlayers[activePlayerKey].freeThrowMiss + direction;
+
     activePlayers[activePlayerKey].freeThrowAttempts =
-      activePlayers[activePlayerKey].freeThrowAttempts + 1;
+      activePlayers[activePlayerKey].freeThrowMiss +
+      activePlayers[activePlayerKey].freeThrowMade;
 
     activePlayers[activePlayerKey].freeThrowPercentage = this.shootingPercent(
       activePlayers[activePlayerKey].freeThrowMade,
@@ -224,37 +252,37 @@ const StatsService = {
     return activePlayers;
   },
 
-  assist: function(activePlayers, activePlayerKey) {
+  assist: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].assists =
-      activePlayers[activePlayerKey].assists + 1;
+      activePlayers[activePlayerKey].assists + direction;
 
     return activePlayers;
   },
 
-  block: function(activePlayers, activePlayerKey) {
+  block: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].blocks =
-      activePlayers[activePlayerKey].blocks + 1;
+      activePlayers[activePlayerKey].blocks + direction;
 
     return activePlayers;
   },
 
-  fouls: function(activePlayers, activePlayerKey) {
+  fouls: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].foulsCommitted =
-      activePlayers[activePlayerKey].foulsCommitted + 1;
+      activePlayers[activePlayerKey].foulsCommitted + direction;
 
     return activePlayers;
   },
 
-  steals: function(activePlayers, activePlayerKey) {
+  steals: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].steals =
-      activePlayers[activePlayerKey].steals + 1;
+      activePlayers[activePlayerKey].steals + direction;
 
     return activePlayers;
   },
 
-  turnOvers: function(activePlayers, activePlayerKey) {
+  turnOvers: function(activePlayers, activePlayerKey, direction) {
     activePlayers[activePlayerKey].turnOvers =
-      activePlayers[activePlayerKey].turnOvers + 1;
+      activePlayers[activePlayerKey].turnOvers + direction;
 
     return activePlayers;
   },
@@ -280,11 +308,15 @@ const StatsService = {
       points: 0,
       shotAttempts: 0,
       shotsMade: 0,
+      shotsMiss: 0,
       shootingPercentage: 0,
       twoPointAttempts: 0,
       twoPointMade: 0,
+      twoPointMiss: 0,
+      twoPointPercentage: 0,
       threePointAttempts: 0,
       threePointMade: 0,
+      threePointMiss: 0,
       threePointPercentage: 0,
       rebounds: 0,
       offRebounds: 0,
@@ -297,6 +329,7 @@ const StatsService = {
       technicals: 0,
       freeThrowAttempts: 0,
       freeThrowMade: 0,
+      freeThrowMiss: 0,
       freeThrowPercentage: 0,
       pointsPerMin: 0,
       shotsPerMin: 0,
@@ -329,9 +362,13 @@ const StatsService = {
         twoPointAttempts: oldActivePlayers[thiskey].twoPointAttempts,
         threePointAttempts: oldActivePlayers[thiskey].threePointAttempts,
         shotsMade: oldActivePlayers[thiskey].shotsMade,
+        shotsMiss: oldActivePlayers[thiskey].shotsMiss,
         shootingPercentage: oldActivePlayers[thiskey].shootingPercentage,
         twoPointMade: oldActivePlayers[thiskey].twoPointMade,
+        twoPointMiss: oldActivePlayers[thiskey].twoPointMiss,
+        twoPointPercentage: oldActivePlayers[thiskey].twoPointPercentage,
         threePointMade: oldActivePlayers[thiskey].threePointMade,
+        threePointMiss: oldActivePlayers[thiskey].threePointMiss,
         threePointPercentage: oldActivePlayers[thiskey].threePointPercentage,
         rebounds: oldActivePlayers[thiskey].rebounds,
         offRebounds: oldActivePlayers[thiskey].offRebounds,
@@ -343,6 +380,7 @@ const StatsService = {
         steals: oldActivePlayers[thiskey].steals,
         freeThrowAttempts: oldActivePlayers[thiskey].freeThrowAttempts,
         freeThrowMade: oldActivePlayers[thiskey].freeThrowMade,
+        freeThrowMiss: oldActivePlayers[thiskey].freeThrowMiss,
         freeThrowPercentage: oldActivePlayers[thiskey].freeThrowPercentage,
         pointsPerMin: oldActivePlayers[thiskey].pointsPerMin,
         shotsPerMin: oldActivePlayers[thiskey].shotsPerMin,

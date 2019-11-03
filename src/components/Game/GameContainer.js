@@ -156,6 +156,7 @@ class GameContainer extends Component {
         this.state.activePlayers,
         this.state.activePlayerKey,
         action,
+        1,
       );
       this.setState({
         activePlayers: newPlayers,
@@ -355,6 +356,15 @@ class GameContainer extends Component {
                   &nbsp;&nbsp;
                   {this.state.activePlayers[this.state.activePlayerKey]
                     .shootingPercentage + `%\n`}
+                  &bull;&nbsp;2pt Att:&nbsp;
+                  {this.state.activePlayers[this.state.activePlayerKey]
+                    .twoPointAttempts + ` `}
+                  &nbsp;Made:&nbsp;
+                  {this.state.activePlayers[this.state.activePlayerKey]
+                    .twoPointMade + ` `}
+                  &nbsp;&nbsp;
+                  {this.state.activePlayers[this.state.activePlayerKey]
+                    .twoPointPercentage + `% \n`}
                   &bull;&nbsp;3pt Att:&nbsp;
                   {this.state.activePlayers[this.state.activePlayerKey]
                     .threePointAttempts + ` `}
