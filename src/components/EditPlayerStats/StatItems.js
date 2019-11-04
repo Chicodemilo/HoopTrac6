@@ -4,16 +4,16 @@ const editActions = {
     objectName: 'twoPointMade',
   },
   shotMissTwo: {
-    friendly: '2pt Attempts',
-    objectName: 'twoPointAttempts',
+    friendly: '2pt Miss',
+    objectName: 'twoPointMiss',
   },
   shotMadeThree: {
     friendly: '3pt Made',
     objectName: 'threePointMade',
   },
   shotMissThree: {
-    friendly: '3pt Attempts',
-    objectName: 'threePointAttempts',
+    friendly: '3pt Miss',
+    objectName: 'threePointMiss',
   },
   defensiveRebound: {
     friendly: 'Def Reb',

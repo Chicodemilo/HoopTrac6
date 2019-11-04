@@ -20,7 +20,6 @@
 		2C8E2B7D84E6451C941BDB3F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 250DDF029D4B43FA86989318 /* Octicons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* HoopTracTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HoopTracTests.m */; };
 		2E2749A64DD44AA4AEC785D7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59B35E47C2E7484289A02001 /* SimpleLineIcons.ttf */; };
 		3BEE2D887AAA4DAE816781A1 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24FB599131174FEBB6360260 /* FontAwesome5_Regular.ttf */; };
@@ -34,6 +33,7 @@
 		924E6F6BA01B4FA2BFC08892 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DEEBA4F81D94F3E9BADE8E1 /* FontAwesome.ttf */; };
 		9814208D409A38DC9ABB371C /* libPods-HoopTrac-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F18617F256CBB41AB71C3B1 /* libPods-HoopTrac-tvOSTests.a */; };
 		B1D9FFB7163848DF90FFBC4F /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCC474C8BA1547228D3700A0 /* Foundation.ttf */; };
+		C43AA74923704E58000F5101 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		D5BAF210B98D4A47D8E96261 /* libPods-HoopTrac-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FC97EF464EBEA2802B10E1 /* libPods-HoopTrac-tvOS.a */; };
 		F964CB2ECC259091CEC24792 /* libPods-HoopTrac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAA194FE279BF804CFC11AF /* libPods-HoopTrac.a */; };
 /* End PBXBuildFile section */
@@ -629,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C43AA74923704E58000F5101 /* main.m in Sources */,
 				00E356F31AD99517003FC87E /* HoopTracTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,7 +647,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
 				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

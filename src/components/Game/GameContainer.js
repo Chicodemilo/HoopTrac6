@@ -25,7 +25,8 @@ import {
 
 // TODO Fix View overlap on buttons on android
 // TODO Fix Players time goes 2X too fast when game is restarted
-// TODO edit player stats
+// TODO on edit page FT miss is going up on FT made
+// TODO don't allow negative state values
 
 class GameContainer extends Component {
   constructor(props) {
