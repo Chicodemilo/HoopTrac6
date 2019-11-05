@@ -29,7 +29,7 @@ const editActions = {
   },
   freeThrowMiss: {
     friendly: 'Freethrow Miss',
-    objectName: 'freeThrowAttempts',
+    objectName: 'freeThrowMiss',
   },
   assist: {
     friendly: 'Assists',

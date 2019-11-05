@@ -109,17 +109,41 @@ const StatsService = {
   },
 
   shotMade: function(activePlayers, activePlayerKey, points, direction) {
-    if (direction == 1) {
-      activePlayers[activePlayerKey].points =
-        activePlayers[activePlayerKey].points + points;
-    } else {
-      let checkedPoints = this.negativeCheck(
-        activePlayers[activePlayerKey].points - points,
-      );
-      activePlayers[activePlayerKey].points = checkedPoints;
-    }
+    // if (direction == 1) {
+    //   activePlayers[activePlayerKey].points =
+    //     activePlayers[activePlayerKey].points + points;
+    // } else {
+    //   if (activePlayers[activePlayerKey].twoPointMade > 1) {
+    //     let checkedPoints = this.negativeCheck(
+    //       activePlayers[activePlayerKey].points - points,
+    //     );
+    //     activePlayers[activePlayerKey].points = checkedPoints;
+    //   }
+    // }
 
     if (points == 2) {
+      if (direction == 1) {
+        activePlayers[activePlayerKey].points =
+          activePlayers[activePlayerKey].points + points;
+
+        let shotMade = this.negativeCheck(
+          activePlayers[activePlayerKey].shotsMade + direction,
+        );
+        activePlayers[activePlayerKey].shotsMade = shotMade;
+      } else {
+        if (activePlayers[activePlayerKey].twoPointMade > 0) {
+          let checkedPoints = this.negativeCheck(
+            activePlayers[activePlayerKey].points - points,
+          );
+          activePlayers[activePlayerKey].points = checkedPoints;
+        }
+
+        let shotMade = this.negativeCheck(
+          activePlayers[activePlayerKey].shotsMade + direction,
+        );
+        activePlayers[activePlayerKey].shotsMade = shotMade;
+      }
+
       let checked2ptAtt = this.negativeCheck(
         activePlayers[activePlayerKey].twoPointAttempts + direction,
       );
@@ -135,6 +159,26 @@ const StatsService = {
         activePlayers[activePlayerKey].twoPointAttempts,
       );
     } else {
+      if (direction == 1) {
+        activePlayers[activePlayerKey].points =
+          activePlayers[activePlayerKey].points + points;
+        let shotMade = this.negativeCheck(
+          activePlayers[activePlayerKey].shotsMade + direction,
+        );
+        activePlayers[activePlayerKey].shotsMade = shotMade;
+      } else {
+        if (activePlayers[activePlayerKey].threePointMade > 0) {
+          let checkedPoints = this.negativeCheck(
+            activePlayers[activePlayerKey].points - points,
+          );
+          activePlayers[activePlayerKey].points = checkedPoints;
+          let shotMade = this.negativeCheck(
+            activePlayers[activePlayerKey].shotsMade + direction,
+          );
+          activePlayers[activePlayerKey].shotsMade = shotMade;
+        }
+      }
+
       let checked3ptAtt = this.negativeCheck(
         activePlayers[activePlayerKey].threePointAttempts + direction,
       );
@@ -152,14 +196,6 @@ const StatsService = {
         activePlayers[activePlayerKey].threePointAttempts,
       );
     }
-
-    activePlayers[activePlayerKey].shotsMade =
-      activePlayers[activePlayerKey].shotsMade + direction;
-
-    let shotMade = this.negativeCheck(
-      activePlayers[activePlayerKey].shotsMade + direction,
-    );
-    activePlayers[activePlayerKey].shotsMade = shotMade;
 
     activePlayers[activePlayerKey].shotAttempts =
       activePlayers[activePlayerKey].shotsMade +
@@ -252,6 +288,20 @@ const StatsService = {
   },
 
   freeThrowMade: function(activePlayers, activePlayerKey, direction) {
+    if (direction == 1) {
+      let thisPoints = this.negativeCheck(
+        activePlayers[activePlayerKey].points + direction,
+      );
+      activePlayers[activePlayerKey].points = thisPoints;
+    } else {
+      if (activePlayers[activePlayerKey].freeThrowMade > 0) {
+        let thisPoints = this.negativeCheck(
+          activePlayers[activePlayerKey].points + direction,
+        );
+        activePlayers[activePlayerKey].points = thisPoints;
+      }
+    }
+
     let freethrowMade = this.negativeCheck(
       activePlayers[activePlayerKey].freeThrowMade + direction,
     );
@@ -260,14 +310,6 @@ const StatsService = {
     activePlayers[activePlayerKey].freeThrowAttempts =
       activePlayers[activePlayerKey].freeThrowMade +
       activePlayers[activePlayerKey].freeThrowMiss;
-
-    activePlayers[activePlayerKey].points =
-      activePlayers[activePlayerKey].points + direction;
-
-    let thisPoints = this.negativeCheck(
-      activePlayers[activePlayerKey].points + direction,
-    );
-    activePlayers[activePlayerKey].points = thisPoints;
 
     activePlayers[activePlayerKey].freeThrowPercentage = this.shootingPercent(
       activePlayers[activePlayerKey].freeThrowMade,
@@ -278,8 +320,10 @@ const StatsService = {
   },
 
   freeThrowMiss: function(activePlayers, activePlayerKey, direction) {
-    activePlayers[activePlayerKey].freeThrowMiss =
-      activePlayers[activePlayerKey].freeThrowMiss + direction;
+    let freeThrowMiss = this.negativeCheck(
+      activePlayers[activePlayerKey].freeThrowMiss + direction,
+    );
+    activePlayers[activePlayerKey].freeThrowMiss = freeThrowMiss;
 
     activePlayers[activePlayerKey].freeThrowAttempts =
       activePlayers[activePlayerKey].freeThrowMiss +
@@ -294,36 +338,45 @@ const StatsService = {
   },
 
   assist: function(activePlayers, activePlayerKey, direction) {
-    activePlayers[activePlayerKey].assists =
-      activePlayers[activePlayerKey].assists + direction;
+    let thisAssist = this.negativeCheck(
+      activePlayers[activePlayerKey].assists + direction,
+    );
+    activePlayers[activePlayerKey].assists = thisAssist;
 
     return activePlayers;
   },
 
   block: function(activePlayers, activePlayerKey, direction) {
-    activePlayers[activePlayerKey].blocks =
-      activePlayers[activePlayerKey].blocks + direction;
-
+    let thisBlock = this.negativeCheck(
+      activePlayers[activePlayerKey].blocks + direction,
+    );
+    activePlayers[activePlayerKey].blocks = thisBlock;
     return activePlayers;
   },
 
   fouls: function(activePlayers, activePlayerKey, direction) {
-    activePlayers[activePlayerKey].foulsCommitted =
-      activePlayers[activePlayerKey].foulsCommitted + direction;
+    let thisFouls = this.negativeCheck(
+      activePlayers[activePlayerKey].foulsCommitted + direction,
+    );
+    activePlayers[activePlayerKey].foulsCommitted = thisFouls;
 
     return activePlayers;
   },
 
   steals: function(activePlayers, activePlayerKey, direction) {
-    activePlayers[activePlayerKey].steals =
-      activePlayers[activePlayerKey].steals + direction;
+    let thisSteals = this.negativeCheck(
+      activePlayers[activePlayerKey].steals + direction,
+    );
+    activePlayers[activePlayerKey].steals = thisSteals;
 
     return activePlayers;
   },
 
   turnOvers: function(activePlayers, activePlayerKey, direction) {
-    activePlayers[activePlayerKey].turnOvers =
-      activePlayers[activePlayerKey].turnOvers + direction;
+    let thisTurnOvers = this.negativeCheck(
+      activePlayers[activePlayerKey].turnOvers + direction,
+    );
+    activePlayers[activePlayerKey].turnOvers = thisTurnOvers;
 
     return activePlayers;
   },
