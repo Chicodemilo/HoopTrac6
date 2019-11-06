@@ -25,8 +25,7 @@ import {
 
 // TODO Fix View overlap on buttons on android
 // TODO Fix Players time goes 2X too fast when game is restarted
-// TODO on edit page FT miss is going up on FT made
-// TODO don't allow negative state values
+// TODO style edit page - lightly
 
 class GameContainer extends Component {
   constructor(props) {
@@ -60,10 +59,13 @@ class GameContainer extends Component {
         showEditStats: false,
       };
     }
+    this.ticker = setInterval(this.timeTick, 1000);
   }
 
-  componentDidMount() {
-    setInterval(this.timeTick, 1000);
+  componentDidMount() {}
+  componentWillUnmount() {
+    //
+    clearInterval(this.ticker);
   }
 
   timeTick = () => {
@@ -216,6 +218,17 @@ class GameContainer extends Component {
     this.setState({
       showEditStats: false,
     });
+  };
+
+  stopGame = () => {
+    this.setState({
+      gameActive: false,
+    });
+    this.props.gameEnd(
+      this.state.gameMin,
+      this.state.activePlayers,
+      this.state.gameTime,
+    );
   };
 
   render() {
@@ -433,14 +446,7 @@ class GameContainer extends Component {
               style={styles.baseButton}
               title="End Game"
               color="red"
-              onPress={() => {
-                //TODO move this to a function to make activeGame false then do this...
-                this.props.gameEnd(
-                  this.state.gameMin,
-                  this.state.activePlayers,
-                  this.state.gameTime,
-                );
-              }}
+              onPress={this.stopGame}
             />
           </View>
         </View>

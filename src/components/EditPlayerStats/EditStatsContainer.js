@@ -49,7 +49,6 @@ class EditStatsContainer extends Component {
 
   savePlayerName = name => {
     this.props.makeActivePlayer(this.state.activePlayerKey, name);
-    console.log(this.state.playerStats[this.state.activePlayerKey].name);
     this.state.playerStats[this.state.activePlayerKey].name = name;
   };
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, View, Button, StyleSheet, Platform} from 'react-native';
+import {Modal} from 'react-native';
 import EmailInput from './EmailInput';
 
 class SendReportContainer extends Component {
@@ -13,6 +13,8 @@ class SendReportContainer extends Component {
       gameTime: props.gameTime,
       gameId: props.gameId,
       gameName: props.gameName,
+      gameOpponent: props.gameOpponent,
+      gameNotes: props.gameNotes,
       gameDate: props.gameDate,
     };
   }
@@ -20,35 +22,19 @@ class SendReportContainer extends Component {
   render() {
     return (
       <Modal visible={this.props.showSendReport}>
-        <View style={styles.reportButtons}>
-          <Button
-            title="Cancel"
-            color="red"
-            onPress={() => {
-              this.state.hideReportView();
-            }}
-          />
-        </View>
         <EmailInput
           finalStats={this.state.finalStats}
           gameTime={this.state.gameTime}
           gameId={this.state.gameId}
           gameName={this.state.gameName}
+          gameOpponent={this.state.gameOpponent}
+          gameNotes={this.state.gameNotes}
           gameDate={this.state.gameDate}
+          hideReportView={this.state.hideReportView}
         />
       </Modal>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  reportButtons: {
-    marginTop: Platform.OS === 'ios' ? 40 : 15,
-    // TODO add floor bg to this
-    // backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  },
-});
 
 export default SendReportContainer;

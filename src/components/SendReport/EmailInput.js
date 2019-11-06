@@ -24,6 +24,8 @@ class EmailInput extends Component {
     gameName: this.props.gameName,
     gameId: this.props.gameId,
     gameDate: this.props.gameDate,
+    gameOpponent: this.props.gameOpponent,
+    gameNotes: this.props.gameNotes,
     emailAddress: '',
     finalStats: this.props.finalStats,
     showEmailWarning: false,
@@ -37,6 +39,22 @@ class EmailInput extends Component {
       return {
         gameNamed: true,
         gameName: val,
+      };
+    });
+  };
+
+  saveGameOpponent = val => {
+    this.setState(prevState => {
+      return {
+        gameOpponent: val,
+      };
+    });
+  };
+
+  saveGameNotes = val => {
+    this.setState(prevState => {
+      return {
+        gameNotes: val,
       };
     });
   };
@@ -108,6 +126,8 @@ class EmailInput extends Component {
           id: this.state.gameId,
           date: this.state.gameDate,
           name: this.state.gameName,
+          opponent: this.state.gameOpponent,
+          notes: this.state.gameNotes,
           players: this.state.finalStats,
         },
       },
@@ -177,25 +197,53 @@ class EmailInput extends Component {
         source={courtImage}
         style={{width: '100%', height: '100%'}}>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabels}>Game: </Text>
+          <Text style={styles.inputLabels}>Game Name: </Text>
           <TextInput
             style={styles.emailInput}
-            // placeholder="Enter A Name For This Game"
             onChangeText={this.saveGameName}
             value={this.state.gameName}
+            maxLength={30}
           />
+
+          <Text style={styles.inputLabels}>Opponent: </Text>
+          <TextInput
+            style={styles.emailInput}
+            onChangeText={this.saveGameOpponent}
+            value={this.state.gameOpponent}
+            maxLength={20}
+          />
+
+          <Text style={styles.inputLabels}>Notes: </Text>
+          <TextInput
+            multiline
+            style={styles.notesInput}
+            onChangeText={this.saveGameNotes}
+            value={this.state.gameNotes}
+            maxLength={200}
+          />
+
           <Text style={styles.inputLabels}>Email Address: </Text>
           <TextInput
             style={styles.emailInput}
             placeholder="Enter Your Email Address"
             onChangeText={this.saveEmail}
             keyboardType="email-address"
+            maxLength={50}
           />
-          <Button
-            style={styles.inputButton}
-            title="Send Game Stats"
-            onPress={this.sendTheEmail}
-          />
+          <View style={styles.emailButtons}>
+            <Button
+              style={styles.inputButton}
+              title="Send Game Stats"
+              color="#448ccf"
+              onPress={this.sendTheEmail}
+            />
+            <Button
+              style={styles.inputButton}
+              title="Cancel"
+              color="#cc5500"
+              onPress={this.props.hideReportView}
+            />
+          </View>
           {emailWarning}
           {gameSentAlert}
         </View>
@@ -205,25 +253,47 @@ class EmailInput extends Component {
 }
 
 const styles = StyleSheet.create({
-  emailInput: {
-    height: 50,
+  emailButtons: {
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    marginTop: 10,
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '100%',
+    borderTopColor: 'black',
+    borderTopWidth: 1,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+  },
+  notesInput: {
+    height: 90,
     width: '93%',
     borderColor: '#ccc',
     backgroundColor: 'white',
-    color: 'green',
-    fontWeight: 'bold',
+    color: '#828282',
+    borderWidth: 0.5,
+    padding: 5,
+    margin: 5,
+  },
+  emailInput: {
+    height: 40,
+    width: '93%',
+    borderColor: '#ccc',
+    backgroundColor: 'white',
+    color: '#828282',
     borderWidth: 0.5,
     padding: 5,
     margin: 5,
   },
   inputContainer: {
+    paddingTop: 50,
     flexDirection: 'column',
     backgroundColor: 'rgba(255, 255, 255, 0.6)',
     height: hp('100%'),
   },
   inputButton: {
+    flexGrow: 1,
     marginTop: 15,
-    width: '40%',
   },
   inputLabels: {
     fontSize: 13,

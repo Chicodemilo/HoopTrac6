@@ -15,16 +15,11 @@ const playerStats = props => {
       gameTime={props.gameTime}
     />
   ));
-  return <ScrollView style={styles.playerContainer}>{playerOutput}</ScrollView>;
+  return (
+    <ScrollView contentContainerStyle={{paddingBottom: 120}}>
+      {playerOutput}
+    </ScrollView>
+  );
 };
-
-const styles = StyleSheet.create({
-  playerContainer: {
-    height: hp('100%'),
-    width: wp('100%'),
-    position: 'relative',
-    flexDirection: 'column',
-  },
-});
 
 export default playerStats;

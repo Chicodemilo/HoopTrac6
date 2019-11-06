@@ -24,6 +24,8 @@ class StatsContainer extends Component {
       gameTime: props.finalStats.gameTime,
       gameId: props.finalStats.id,
       gameName: props.finalStats.name,
+      gameOpponent: props.finalStats.opponent,
+      gameNotes: props.finalStats.notes,
       gameDate: props.finalStats.date,
       showFinalStats: props.showFinalStats,
       hideFinalStats: props.hideFinalStats,
@@ -54,6 +56,8 @@ class StatsContainer extends Component {
           gameTime={this.state.gameTime}
           gameId={this.state.gameId}
           gameName={this.state.gameName}
+          gameOpponent={this.state.gameOpponent}
+          gameNotes={this.state.gameNotes}
           gameDate={this.state.gameDate}
         />
       );
@@ -67,14 +71,14 @@ class StatsContainer extends Component {
           <View style={styles.gameView}>
             <Button
               title="Hide Game Stats"
-              color="red"
+              color="#cc5500"
               onPress={() => {
                 this.props.hideFinalStats();
               }}
             />
             <Button
               title="Email Report"
-              color="blue"
+              color="#448ccf"
               onPress={() => {
                 this.showReportView();
               }}
