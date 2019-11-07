@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   elementBox: {
     flexDirection: 'row',
     padding: 2,
+    paddingLeft: 5,
     borderBottomColor: '#c9c9c9',
     borderBottomWidth: 1,
     height: 32,

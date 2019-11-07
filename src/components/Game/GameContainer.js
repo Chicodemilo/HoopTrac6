@@ -24,8 +24,6 @@ import {
 } from 'react-native-responsive-screen';
 
 // TODO Fix View overlap on buttons on android
-// TODO Fix Players time goes 2X too fast when game is restarted
-// TODO style edit page - lightly
 
 class GameContainer extends Component {
   constructor(props) {

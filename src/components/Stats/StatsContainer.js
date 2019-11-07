@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     width: wp('100%'),
   },
   statsBox: {
-    // height: hp("84%")
+    height: hp('100%'),
     backgroundColor: 'rgba(255, 255, 255, 0.6)',
   },
 });

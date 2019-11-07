@@ -22,19 +22,16 @@ import {
 class EditStatsContainer extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.playerStats[props.activePlayerKey]);
     this.state = {
       playerStats: props.playerStats,
       activePlayerKey: props.activePlayerKey,
       hideEditStats: props.hideEditStats,
       theseActions: editActions,
     };
-    // console.log(this.state.playerStats[this.state.activePlayerKey]);
   }
 
   updateStats = (action, direction) => {
     if (this.state.playerStats[this.state.activePlayerKey] != undefined) {
-      //   let nowStateActive = {...this.state.activePlayers};
       let newPlayers = StatsService.updateStat(
         this.state.playerStats,
         this.state.activePlayerKey,
@@ -79,34 +76,44 @@ class EditStatsContainer extends Component {
         <ImageBackground
           source={courtImage}
           style={{width: '100%', height: '100%'}}>
-          <View style={styles.statsBox}>
+          <View style={styles.finishedButton}>
             <Button
               style={styles.baseButton}
-              title="Done!!!"
+              title="Finished"
               color="#cc5500"
               onPress={() => {
                 this.props.hideEditStats();
               }}
             />
-            <TextInput
-              style={styles.nameInput}
-              onChangeText={this.savePlayerName}
-              value={this.state.playerStats[this.state.activePlayerKey].name}
-              maxLength={10}
-            />
+          </View>
+          <View style={styles.statsBox}>
+            <View style={styles.nameBox}>
+              <Text style={styles.textTitle}>Player Name:</Text>
+              <TextInput
+                style={styles.nameInput}
+                onChangeText={this.savePlayerName}
+                value={this.state.playerStats[this.state.activePlayerKey].name}
+                maxLength={10}
+              />
+            </View>
             <View style={styles.statsAdjusters}>{adjusterItems}</View>
-            <Text>
-              Points:{' '}
-              {this.state.playerStats[this.state.activePlayerKey].points}
-            </Text>
-            <Text>
-              Rebounds:{' '}
-              {this.state.playerStats[this.state.activePlayerKey].rebounds}
-            </Text>
-            <Text>
-              Total Shot Attempts:{' '}
-              {this.state.playerStats[this.state.activePlayerKey].shotAttempts}
-            </Text>
+            <View style={styles.adjustedStats}>
+              <Text style={styles.adjustedText}>
+                Points:{' '}
+                {this.state.playerStats[this.state.activePlayerKey].points}
+              </Text>
+              <Text style={styles.adjustedText}>
+                Rebounds:{' '}
+                {this.state.playerStats[this.state.activePlayerKey].rebounds}
+              </Text>
+              <Text style={styles.adjustedText}>
+                Total Shot Attempts:{' '}
+                {
+                  this.state.playerStats[this.state.activePlayerKey]
+                    .shotAttempts
+                }
+              </Text>
+            </View>
           </View>
         </ImageBackground>
       </Modal>
@@ -115,10 +122,31 @@ class EditStatsContainer extends Component {
 }
 
 const styles = StyleSheet.create({
+  finishedButton: {
+    paddingTop: 50,
+    padding: 7,
+    textAlign: 'center',
+    width: '100%',
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    borderBottomColor: '#521800',
+    // borderTopColor: '#521800',
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+  },
   statsBox: {
     padding: 25,
     height: hp('100%'),
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  },
+  textTitle: {
+    color: '#8a8a8a',
+    fontSize: 11,
+    fontWeight: 'bold',
+  },
+  adjustedText: {
+    color: '#8a8a8a',
+    fontSize: 11,
+    fontWeight: 'bold',
   },
   baseButton: {
     marginTop: 50,
@@ -126,9 +154,26 @@ const styles = StyleSheet.create({
     top: 35,
     left: 10,
   },
+  nameBox: {
+    width: wp('85%'),
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    padding: 5,
+    borderColor: '#a3a3a3',
+    borderWidth: 1,
+  },
+  adjustedStats: {
+    marginTop: 10,
+    width: wp('85%'),
+    backgroundColor: 'white',
+    padding: 10,
+    borderColor: '#a3a3a3',
+    borderWidth: 1,
+  },
   nameInput: {
-    height: 50,
-    width: '93%',
+    height: 40,
+    width: '50%',
     borderColor: '#ccc',
     color: 'black',
     backgroundColor: 'white',
