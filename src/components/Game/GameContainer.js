@@ -104,7 +104,7 @@ class GameContainer extends Component {
 
   toggleTimer = () => {
     let buttonText = this.state.gameActive
-      ? 'UnPause Game Time'
+      ? 'Resume Game Time'
       : 'Pause Game Time';
     this.setState(prevState => {
       return {

@@ -123,8 +123,8 @@ class EditStatsContainer extends Component {
 
 const styles = StyleSheet.create({
   finishedButton: {
-    paddingTop: 50,
-    padding: 7,
+    paddingTop: 27,
+    padding: 4,
     textAlign: 'center',
     width: '100%',
     backgroundColor: 'rgba(255,255,255,0.7)',
@@ -134,7 +134,9 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   statsBox: {
-    padding: 25,
+    paddingTop: 10,
+    paddingLeft: 25,
+    paddingRight: 25,
     height: hp('100%'),
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
@@ -172,8 +174,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   nameInput: {
-    height: 40,
-    width: '50%',
+    height: 30,
+    width: '60%',
     borderColor: '#ccc',
     color: 'black',
     backgroundColor: 'white',
