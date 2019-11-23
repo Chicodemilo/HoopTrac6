@@ -49,23 +49,22 @@ class ListItem extends Component {
 const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
-    alignItems: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    backgroundColor: '#d9d9d9',
   },
   nameText: {
-    fontSize: 13,
+    fontSize: 15,
+    color: '#cc5500',
+    paddingLeft: 15,
   },
   listItem: {
-    width: '60%',
-    marginTop: 5,
-    marginBottom: 5,
-    marginLeft: 10,
-    height: 45,
+    flex: 1,
     padding: 10,
-    backgroundColor: '#eee',
   },
   starterCheck: {
-    width: '40%',
-    marginRight: 10,
+    flex: 1,
   },
 });
 

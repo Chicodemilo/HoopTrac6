@@ -202,6 +202,7 @@ class EmailInput extends Component {
             style={styles.emailInput}
             onChangeText={this.saveGameName}
             value={this.state.gameName}
+            placeholderTextColor={'#b5b5b5'}
             maxLength={30}
           />
 
@@ -210,6 +211,7 @@ class EmailInput extends Component {
             style={styles.emailInput}
             onChangeText={this.saveGameOpponent}
             value={this.state.gameOpponent}
+            placeholderTextColor={'#b5b5b5'}
             maxLength={20}
           />
 
@@ -219,6 +221,7 @@ class EmailInput extends Component {
             style={styles.notesInput}
             onChangeText={this.saveGameNotes}
             value={this.state.gameNotes}
+            placeholderTextColor={'#b5b5b5'}
             maxLength={200}
           />
 
@@ -228,6 +231,7 @@ class EmailInput extends Component {
             placeholder="Enter Your Email Address"
             onChangeText={this.saveEmail}
             keyboardType="email-address"
+            placeholderTextColor={'#b5b5b5'}
             maxLength={50}
           />
           <View style={styles.emailButtons}>

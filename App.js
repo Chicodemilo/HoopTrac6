@@ -216,22 +216,24 @@ export default class App extends Component {
       this.state.endGameStats != '' ? (
         <View style={styles.statsRestartButtons}>
           <Text style={styles.gameTitle}>{this.state.endGameStats.name}</Text>
-          <Button
-            style={styles.baseButton}
-            title="Show Stats"
-            color="#cc5500"
-            onPress={() => {
-              this.showFinalStats();
-            }}
-          />
-          <Button
-            style={styles.baseButton}
-            title="Resume Game"
-            color="#448ccf"
-            onPress={() => {
-              this.restartGameHandler();
-            }}
-          />
+          <View style={styles.buttonsBox}>
+            <Button
+              style={styles.baseButton}
+              title="Show Stats"
+              color="#cc5500"
+              onPress={() => {
+                this.showFinalStats();
+              }}
+            />
+            <Button
+              style={styles.baseButton}
+              title="Resume Game"
+              color="#448ccf"
+              onPress={() => {
+                this.restartGameHandler();
+              }}
+            />
+          </View>
         </View>
       ) : null;
 
@@ -324,6 +326,11 @@ const styles = StyleSheet.create({
     borderTopColor: '#521800',
     borderBottomWidth: 1,
     borderTopWidth: 1,
+  },
+  buttonsBox: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    padding: 15,
   },
   gameTitle: {
     width: '100%',

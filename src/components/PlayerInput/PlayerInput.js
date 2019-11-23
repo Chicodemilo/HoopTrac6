@@ -44,6 +44,7 @@ class PlayerInput extends Component {
           placeholder={this.state.inputMessage}
           value={this.state.playerName}
           onChangeText={this.playerNameChangedHandler}
+          placeholderTextColor={'#b5b5b5'}
           maxLength={10}
           blurOnSubmit={true}
         />
@@ -66,13 +67,12 @@ const styles = StyleSheet.create({
     height: 50,
   },
   playerInput: {
-    height: 50,
+    height: 40,
     width: '60%',
-    color: 'green',
-    // borderColor: "#6b5d5c",
-    fontWeight: 'bold',
+    color: 'black',
+    borderColor: '#6b5d5c',
     backgroundColor: 'white',
-    // borderWidth: 0.5,
+    borderWidth: 0.5,
     padding: 4,
     margin: 2,
   },

@@ -352,72 +352,122 @@ class GameContainer extends Component {
               <View>
                 <Text style={styles.greenText}>
                   &bull;&nbsp;Game Clock:&nbsp;
-                  {this.state.gameMin + `\n`}
-                  &bull;&nbsp;Player Min:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .timePlayedMin + `\n`}
+                  <Text style={styles.greenBoldText}>
+                    {this.state.gameMin + `\n`}
+                  </Text>
+                  &bull;&nbsp;Player Clock:&nbsp;&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .timePlayedMin + `\n`}
+                  </Text>
                   &bull;&nbsp;Points:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey].points +
-                    `\n`}
-                  &bull;&nbsp;Shot Att:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .shotAttempts + ` `}
-                  &nbsp;Made:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .shotsMade + ` `}
-                  &nbsp;&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .shootingPercentage + `%\n`}
-                  &bull;&nbsp;2pt Att:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .twoPointAttempts + ` `}
-                  &nbsp;Made:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .twoPointMade + ` `}
-                  &nbsp;&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .twoPointPercentage + `% \n`}
-                  &bull;&nbsp;3pt Att:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .threePointAttempts + ` `}
-                  &nbsp;Made:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .threePointMade + ` `}
-                  &nbsp;&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .threePointPercentage + `% \n`}
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .points + `\n`}
+                  </Text>
                   &bull;&nbsp;Rebounds:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .rebounds + ` `}
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .rebounds + ` `}
+                  </Text>
                   &nbsp;Def:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .defRebounds + ` `}
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .defRebounds + ` `}
+                  </Text>
                   &nbsp;Off:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .offRebounds + `\n`}
-                  &bull;&nbsp;Free Throw Made:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .freeThrowMade + ` `}
-                  &nbsp;Missed:&nbsp;
-                  {freeThrowMiss + ` `}
-                  &nbsp;&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .freeThrowPercentage + `% \n`}
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .offRebounds + `\n`}
+                  </Text>
                   &bull;&nbsp;Assists:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .assists + `\n`}
-                  &bull;&nbsp;Blocks:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey].blocks +
-                    `\n`}
-                  &bull;&nbsp;Steals:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey].steals +
-                    `\n`}
+                  <Text style={styles.greenBoldText}>
+                    {
+                      this.state.activePlayers[this.state.activePlayerKey]
+                        .assists
+                    }
+                  </Text>
+                  &nbsp;&nbsp; &bull;&nbsp;Steals:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {
+                      this.state.activePlayers[this.state.activePlayerKey]
+                        .steals
+                    }
+                  </Text>
+                  &nbsp;&nbsp;&bull;&nbsp;Blocks:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .blocks + `\n`}
+                  </Text>
+                  &bull;&nbsp;Shot Att:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .shotAttempts + ` `}
+                  </Text>
+                  &nbsp;Made:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .shotsMade + ` `}
+                  </Text>
+                  &nbsp;&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .shootingPercentage + `%\n`}
+                  </Text>
+                  &bull;&nbsp;2pt Att:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .twoPointAttempts + ` `}
+                  </Text>
+                  &nbsp;Made:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .twoPointMade + ` `}
+                  </Text>
+                  &nbsp;&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .twoPointPercentage + `% \n`}
+                  </Text>
+                  &bull;&nbsp;3pt Att:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .threePointAttempts + ` `}
+                  </Text>
+                  &nbsp;Made:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .threePointMade + ` `}
+                  </Text>
+                  &nbsp;&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .threePointPercentage + `% \n`}
+                  </Text>
+                  &bull;&nbsp;Free Throw Att:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .freeThrowAttempts + ` `}
+                  </Text>
+                  &nbsp;Missed:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {freeThrowMiss + ` `}
+                  </Text>
+                  &nbsp;&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .freeThrowPercentage + `% \n`}
+                  </Text>
                   &bull;&nbsp;Fouls:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .foulsCommitted + ` `}
-                  &nbsp;&nbsp;&bull;&nbsp;TurnOvers:&nbsp;
-                  {this.state.activePlayers[this.state.activePlayerKey]
-                    .turnOvers + ` `}
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .foulsCommitted + ` `}
+                  </Text>
+                  &nbsp;&nbsp;&bull;&nbsp;Turn Overs:&nbsp;
+                  <Text style={styles.greenBoldText}>
+                    {this.state.activePlayers[this.state.activePlayerKey]
+                      .turnOvers + ` `}
+                  </Text>
                 </Text>
               </View>
             ) : null}
@@ -435,7 +485,7 @@ class GameContainer extends Component {
             <Button
               style={styles.baseButton}
               title={
-                this.state.gameActive ? 'Pause Game Time' : 'UnPause Game Time'
+                this.state.gameActive ? 'Pause Game Time' : 'Resume Game Time'
               }
               color="orange"
               onPress={this.toggleTimer}
@@ -464,7 +514,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     marginBottom: 0,
     height: hp('100%'),
-    paddingTop: Platform.OS === 'ios' ? 27 : 5,
+    paddingTop: Platform.OS === 'ios' ? 30 : 5,
     paddingBottom: 0,
   },
   buttonBox: {
@@ -570,8 +620,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   greenText: {
-    color: 'green',
-    fontSize: Platform.OS === 'ios' ? 11 : 11,
+    color: '#22a302',
+    fontSize: Platform.OS === 'ios' ? 12.5 : 12.5,
+  },
+  greenBoldText: {
+    color: '#79f05b',
   },
 });
 
