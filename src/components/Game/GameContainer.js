@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
+  Alert,
 } from 'react-native';
 import PlayerBox from './Players/PlayerBox';
 import ClockInButton from './Buttons/ClockInButton';
@@ -341,7 +342,18 @@ class GameContainer extends Component {
             <View style={styles.resetBox}>
               <TouchableOpacity
                 style={styles.resetButtons}
-                onPress={this.resetPlayerStats}>
+                // onPress={this.resetPlayerStats}>
+
+                onPress={() =>
+                  Alert.alert('Reset Player Stats', 'Are you sure?', [
+                    {
+                      text: 'Cancel',
+                      onPress: () => console.log('Reset Canceled!'),
+                    },
+                    {text: 'Reset', onPress: this.resetPlayerStats},
+                    {cancelable: false},
+                  ])
+                }>
                 <View>
                   <Text style={styles.resetText}>reset player stats</Text>
                 </View>

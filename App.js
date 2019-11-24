@@ -109,7 +109,6 @@ export default class App extends Component {
         showFinalStatsButtons: false,
       };
     });
-    console.log(this.state.showFinalStatsButtons);
   };
 
   toggleCheckIn = key => {
@@ -293,6 +292,7 @@ export default class App extends Component {
             onPlayerAdded={this.playerAddedHandler}
             maxPlayers={this.state.playerLimit}
             playerCount={Object.keys(this.state.playersObj).length}
+            showFinalStatsButtons={this.state.showFinalStatsButtons}
           />
           <PlayerList
             players={this.state.players}

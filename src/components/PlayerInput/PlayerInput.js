@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TextInput, Button, StyleSheet} from 'react-native';
+import {View, TextInput, Button, StyleSheet, Alert} from 'react-native';
 
 class PlayerInput extends Component {
   state = {
@@ -17,7 +17,7 @@ class PlayerInput extends Component {
     if (this.state.playerName.trim() === '') {
       this.setState(prevState => {
         return {
-          inputMessage: 'YOU MUST ENTER A NAME',
+          inputMessage: "You Didn't Enter A Name",
         };
       });
     } else {
@@ -37,6 +37,38 @@ class PlayerInput extends Component {
   };
 
   render() {
+    let addButton = null;
+    if (this.props.showFinalStatsButtons == true) {
+      addButton = (
+        <Button
+          style={styles.inputButton}
+          title="Add Player"
+          onPress={() =>
+            Alert.alert(
+              'Are You Sure?',
+              'Adding a player now will start a new game and delete the current game.',
+              [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Add Canceled!'),
+                },
+                {text: 'Start New Game', onPress: this.playerSubmitHandler},
+              ],
+              {cancelable: false},
+            )
+          }
+        />
+      );
+    } else {
+      addButton = (
+        <Button
+          style={styles.inputButton}
+          title="Add Player"
+          onPress={this.playerSubmitHandler}
+        />
+      );
+    }
+
     return (
       <View style={styles.inputContainer}>
         <TextInput
@@ -48,11 +80,7 @@ class PlayerInput extends Component {
           maxLength={10}
           blurOnSubmit={true}
         />
-        <Button
-          style={styles.inputButton}
-          title="Add Player"
-          onPress={this.playerSubmitHandler}
-        />
+        {addButton}
       </View>
     );
   }

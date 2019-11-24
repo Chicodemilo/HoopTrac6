@@ -197,6 +197,20 @@ class EmailInput extends Component {
         source={courtImage}
         style={{width: '100%', height: '100%'}}>
         <View style={styles.inputContainer}>
+          <View style={styles.emailButtons}>
+            <Button
+              style={styles.inputButton}
+              title="Send Game Stats"
+              color="#448ccf"
+              onPress={this.sendTheEmail}
+            />
+            <Button
+              style={styles.inputButton}
+              title="Cancel"
+              color="#cc5500"
+              onPress={this.props.hideReportView}
+            />
+          </View>
           <Text style={styles.inputLabels}>Game Name: </Text>
           <TextInput
             style={styles.emailInput}
@@ -234,20 +248,6 @@ class EmailInput extends Component {
             placeholderTextColor={'#b5b5b5'}
             maxLength={50}
           />
-          <View style={styles.emailButtons}>
-            <Button
-              style={styles.inputButton}
-              title="Send Game Stats"
-              color="#448ccf"
-              onPress={this.sendTheEmail}
-            />
-            <Button
-              style={styles.inputButton}
-              title="Cancel"
-              color="#cc5500"
-              onPress={this.props.hideReportView}
-            />
-          </View>
           {emailWarning}
           {gameSentAlert}
         </View>
@@ -259,8 +259,9 @@ class EmailInput extends Component {
 const styles = StyleSheet.create({
   emailButtons: {
     backgroundColor: 'rgba(255, 255, 255, 0.6)',
-    marginTop: 10,
-    padding: 10,
+    marginTop: 5,
+    marginBottom: 0,
+    padding: 15,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: '100%',
@@ -290,14 +291,14 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   inputContainer: {
-    paddingTop: 50,
+    paddingTop: 35,
     flexDirection: 'column',
     backgroundColor: 'rgba(255, 255, 255, 0.6)',
     height: hp('100%'),
   },
   inputButton: {
     flexGrow: 1,
-    marginTop: 15,
+    marginTop: 10,
   },
   inputLabels: {
     fontSize: 13,
@@ -308,7 +309,6 @@ const styles = StyleSheet.create({
   warningText: {
     color: '#00b3ff',
     fontWeight: 'bold',
-    textAlign: 'center',
     fontSize: 17,
   },
   emailText: {
