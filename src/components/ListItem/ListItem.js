@@ -52,12 +52,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
-    backgroundColor: '#d9d9d9',
+    backgroundColor: '#ebf0f2',
+    borderColor: '#ced9de',
+    borderWidth: 1,
   },
   nameText: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#cc5500',
-    paddingLeft: 15,
+    paddingLeft: 10,
   },
   listItem: {
     flex: 1,

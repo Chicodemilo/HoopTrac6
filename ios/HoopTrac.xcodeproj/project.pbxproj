@@ -66,19 +66,23 @@
 		6F18617F256CBB41AB71C3B1 /* libPods-HoopTrac-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HoopTrac-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7091CE7ADE0CEBB7FEBAB9CF /* Pods-HoopTracTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoopTracTests.debug.xcconfig"; path = "Target Support Files/Pods-HoopTracTests/Pods-HoopTracTests.debug.xcconfig"; sourceTree = "<group>"; };
 		72B9A89E71BB4E7D92E88DF9 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		81A8EBA980C2483DFE314231 /* Pods-HoopTrac-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoopTrac-tvOS.release.xcconfig"; path = "Target Support Files/Pods-HoopTrac-tvOS/Pods-HoopTrac-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		9DEEBA4F81D94F3E9BADE8E1 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		A19550B549524837A9F8F7A9 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		A83A50084D1B4B7CACEB5A7F /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		AFB5303BF293F1E0FB243B8C /* Pods-HoopTrac-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoopTrac-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-HoopTrac-tvOS/Pods-HoopTrac-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B5AD8F27EFF1FD672B38C4E5 /* Pods-HoopTrac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoopTrac.debug.xcconfig"; path = "Target Support Files/Pods-HoopTrac/Pods-HoopTrac.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB6E722A5654A0A9BF6BAFC /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		C4FC97EF464EBEA2802B10E1 /* libPods-HoopTrac-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HoopTrac-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC474C8BA1547228D3700A0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		E162ACCF5991981F256B7FA1 /* Pods-HoopTrac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoopTrac.release.xcconfig"; path = "Target Support Files/Pods-HoopTrac/Pods-HoopTrac.release.xcconfig"; sourceTree = "<group>"; };
+		E17900693C53DDE111049313 /* Pods-HoopTrac-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoopTrac-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-HoopTrac-tvOSTests/Pods-HoopTrac-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EAC3F5449DC24F6D91BFE59D /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EF32C92382284715ABFBF9E3 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		F1C8910405F44F64BA385533 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		F4FCA672A6F24395C03197BE /* Pods-HoopTrac-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HoopTrac-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-HoopTrac-tvOSTests/Pods-HoopTrac-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,10 @@
 				E162ACCF5991981F256B7FA1 /* Pods-HoopTrac.release.xcconfig */,
 				7091CE7ADE0CEBB7FEBAB9CF /* Pods-HoopTracTests.debug.xcconfig */,
 				3119A64D912A2C61BB964A4F /* Pods-HoopTracTests.release.xcconfig */,
+				AFB5303BF293F1E0FB243B8C /* Pods-HoopTrac-tvOS.debug.xcconfig */,
+				81A8EBA980C2483DFE314231 /* Pods-HoopTrac-tvOS.release.xcconfig */,
+				E17900693C53DDE111049313 /* Pods-HoopTrac-tvOSTests.debug.xcconfig */,
+				F4FCA672A6F24395C03197BE /* Pods-HoopTrac-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -713,7 +721,7 @@
 			baseConfigurationReference = B5AD8F27EFF1FD672B38C4E5 /* Pods-HoopTrac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = NMH568TX49;
 				INFOPLIST_FILE = HoopTrac/Info.plist;
@@ -723,7 +731,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = app.hooptrac;
 				PRODUCT_NAME = HoopTrac;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -734,7 +742,7 @@
 			baseConfigurationReference = E162ACCF5991981F256B7FA1 /* Pods-HoopTrac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NMH568TX49;
 				INFOPLIST_FILE = HoopTrac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -743,7 +751,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = app.hooptrac;
 				PRODUCT_NAME = HoopTrac;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -751,6 +759,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFB5303BF293F1E0FB243B8C /* Pods-HoopTrac-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -778,6 +787,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81A8EBA980C2483DFE314231 /* Pods-HoopTrac-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -805,6 +815,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E17900693C53DDE111049313 /* Pods-HoopTrac-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -831,6 +842,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4FCA672A6F24395C03197BE /* Pods-HoopTrac-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;

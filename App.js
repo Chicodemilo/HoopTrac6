@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
+  TextInput,
   View,
   Button,
   ImageBackground,
@@ -17,6 +18,11 @@ import StatsContainer from './src/components/Stats/StatsContainer';
 import GameContainer from './src/components/Game/GameContainer';
 import StatsService from './src/services/StatsService';
 
+if (Text.defaultProps == null) Text.defaultProps = {};
+Text.defaultProps.allowFontScaling = false;
+if (TextInput.defaultProps == null) TextInput.defaultProps = {};
+TextInput.defaultProps.allowFontScaling = false;
+
 export default class App extends Component {
   constructor() {
     super();
@@ -28,6 +34,7 @@ export default class App extends Component {
       disableButton: true,
       gameInProgress: false,
       showFinalStats: false,
+      showFinalStatsButtons: false,
       gameTime: 0,
       endGameStats: '',
       firstActivePlayerName: '',
@@ -99,8 +106,10 @@ export default class App extends Component {
       return {
         playerObj: (prevState.playersObj[thisPlayer.key] = thisPlayer),
         disableButton: false,
+        showFinalStatsButtons: false,
       };
     });
+    console.log(this.state.showFinalStatsButtons);
   };
 
   toggleCheckIn = key => {
@@ -167,6 +176,7 @@ export default class App extends Component {
         gameInProgress: false,
         endGameStats: endGame,
         gameTime: endGameTime,
+        showFinalStatsButtons: true,
       };
     });
   };
@@ -212,8 +222,12 @@ export default class App extends Component {
   };
 
   render() {
-    let finalStatsButton =
-      this.state.endGameStats != '' ? (
+    let finalStatsButton = null;
+    if (
+      this.state.endGameStats != '' &&
+      this.state.showFinalStatsButtons == true
+    ) {
+      finalStatsButton = (
         <View style={styles.statsRestartButtons}>
           <Text style={styles.gameTitle}>{this.state.endGameStats.name}</Text>
           <View style={styles.buttonsBox}>
@@ -235,7 +249,8 @@ export default class App extends Component {
             />
           </View>
         </View>
-      ) : null;
+      );
+    }
 
     let endGameView = null;
     if (this.state.showFinalStats == true) {

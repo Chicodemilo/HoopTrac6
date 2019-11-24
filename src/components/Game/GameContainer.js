@@ -22,6 +22,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import KeepAwake from 'react-native-keep-awake';
 
 // TODO Fix View overlap on buttons on android
 
@@ -299,6 +300,7 @@ class GameContainer extends Component {
 
     return (
       <Modal visible={this.props.gameInProgress} animationType="slide">
+        <KeepAwake />
         {thisEditStatsContainer}
         <View style={styles.gameView}>
           <PlayerBox
@@ -353,32 +355,32 @@ class GameContainer extends Component {
                 <Text style={styles.greenText}>
                   &bull;&nbsp;Game Clock:&nbsp;
                   <Text style={styles.greenBoldText}>
-                    {this.state.gameMin + `\n`}
+                    {this.state.gameMin + '\n'}
                   </Text>
                   &bull;&nbsp;Player Clock:&nbsp;&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .timePlayedMin + `\n`}
+                      .timePlayedMin + '\n'}
                   </Text>
                   &bull;&nbsp;Points:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .points + `\n`}
+                      .points + '\n'}
                   </Text>
                   &bull;&nbsp;Rebounds:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .rebounds + ` `}
+                      .rebounds + ' '}
                   </Text>
                   &nbsp;Def:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .defRebounds + ` `}
+                      .defRebounds + ' '}
                   </Text>
                   &nbsp;Off:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .offRebounds + `\n`}
+                      .offRebounds + '\n'}
                   </Text>
                   &bull;&nbsp;Assists:&nbsp;
                   <Text style={styles.greenBoldText}>
@@ -397,76 +399,76 @@ class GameContainer extends Component {
                   &nbsp;&nbsp;&bull;&nbsp;Blocks:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .blocks + `\n`}
+                      .blocks + '\n'}
                   </Text>
                   &bull;&nbsp;Shot Att:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .shotAttempts + ` `}
+                      .shotAttempts + ' '}
                   </Text>
                   &nbsp;Made:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .shotsMade + ` `}
+                      .shotsMade + ' '}
                   </Text>
                   &nbsp;&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .shootingPercentage + `%\n`}
+                      .shootingPercentage + '%\n'}
                   </Text>
                   &bull;&nbsp;2pt Att:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .twoPointAttempts + ` `}
+                      .twoPointAttempts + ' '}
                   </Text>
                   &nbsp;Made:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .twoPointMade + ` `}
+                      .twoPointMade + ' '}
                   </Text>
                   &nbsp;&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .twoPointPercentage + `% \n`}
+                      .twoPointPercentage + '% \n'}
                   </Text>
                   &bull;&nbsp;3pt Att:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .threePointAttempts + ` `}
+                      .threePointAttempts + ' '}
                   </Text>
                   &nbsp;Made:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .threePointMade + ` `}
+                      .threePointMade + ' '}
                   </Text>
                   &nbsp;&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .threePointPercentage + `% \n`}
+                      .threePointPercentage + '% \n'}
                   </Text>
                   &bull;&nbsp;Free Throw Att:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .freeThrowAttempts + ` `}
+                      .freeThrowAttempts + ' '}
                   </Text>
                   &nbsp;Missed:&nbsp;
                   <Text style={styles.greenBoldText}>
-                    {freeThrowMiss + ` `}
+                    {freeThrowMiss + ' '}
                   </Text>
                   &nbsp;&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .freeThrowPercentage + `% \n`}
+                      .freeThrowPercentage + '% \n'}
                   </Text>
                   &bull;&nbsp;Fouls:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .foulsCommitted + ` `}
+                      .foulsCommitted + ' '}
                   </Text>
                   &nbsp;&nbsp;&bull;&nbsp;Turn Overs:&nbsp;
                   <Text style={styles.greenBoldText}>
                     {this.state.activePlayers[this.state.activePlayerKey]
-                      .turnOvers + ` `}
+                      .turnOvers + ' '}
                   </Text>
                 </Text>
               </View>
