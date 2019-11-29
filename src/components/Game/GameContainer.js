@@ -342,8 +342,6 @@ class GameContainer extends Component {
             <View style={styles.resetBox}>
               <TouchableOpacity
                 style={styles.resetButtons}
-                // onPress={this.resetPlayerStats}>
-
                 onPress={() =>
                   Alert.alert('Reset Player Stats', 'Are you sure?', [
                     {
@@ -581,27 +579,27 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 0,
     flexDirection: 'row',
-    height: hp('5%'),
+    height: hp('4%'),
     padding: 2,
     alignItems: 'flex-start',
   },
   resetButtons: {
     backgroundColor: '#212121',
-    margin: 3,
-    padding: 5,
+    margin: 2,
+    padding: 3,
     flex: 1,
-    height: hp('4%'),
+    // height: hp('2%'),
   },
   resetButtonsInactive: {
     backgroundColor: 'black',
     margin: 3,
-    padding: 5,
+    padding: 3,
     flex: 1,
-    height: hp('4%'),
+    // height: hp('3%'),
   },
   resetText: {
     color: '#ddd',
-    fontSize: 11,
+    fontSize: 10,
   },
   warningText: {
     color: '#00b3ff',

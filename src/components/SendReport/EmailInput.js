@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   ImageBackground,
+  KeyboardAvoidingView,
+  SafeAreaView,
 } from 'react-native';
 import {format, getTime} from 'date-fns';
 import axios from 'axios';
@@ -196,7 +198,47 @@ class EmailInput extends Component {
       <ImageBackground
         source={courtImage}
         style={{width: '100%', height: '100%'}}>
-        <View style={styles.inputContainer}>
+        <SafeAreaView style={styles.inputContainer}>
+          <KeyboardAvoidingView behavior="position" enabled>
+            <Text style={styles.inputLabels}>Game Name: </Text>
+            <TextInput
+              style={styles.emailInput}
+              onChangeText={this.saveGameName}
+              value={this.state.gameName}
+              placeholderTextColor={'#b5b5b5'}
+              maxLength={30}
+            />
+
+            <Text style={styles.inputLabels}>Opponent: </Text>
+            <TextInput
+              style={styles.emailInput}
+              onChangeText={this.saveGameOpponent}
+              value={this.state.gameOpponent}
+              placeholderTextColor={'#b5b5b5'}
+              maxLength={20}
+            />
+
+            <Text style={styles.inputLabels}>Notes: </Text>
+            <TextInput
+              multiline
+              style={styles.notesInput}
+              onChangeText={this.saveGameNotes}
+              value={this.state.gameNotes}
+              placeholderTextColor={'#b5b5b5'}
+              maxLength={200}
+            />
+
+            <Text style={styles.inputLabels}>Email Address: </Text>
+            <TextInput
+              style={styles.emailInput}
+              placeholder="Enter Your Email Address"
+              onChangeText={this.saveEmail}
+              keyboardType="email-address"
+              placeholderTextColor={'#b5b5b5'}
+              maxLength={50}
+            />
+          </KeyboardAvoidingView>
+
           <View style={styles.emailButtons}>
             <Button
               style={styles.inputButton}
@@ -211,46 +253,9 @@ class EmailInput extends Component {
               onPress={this.props.hideReportView}
             />
           </View>
-          <Text style={styles.inputLabels}>Game Name: </Text>
-          <TextInput
-            style={styles.emailInput}
-            onChangeText={this.saveGameName}
-            value={this.state.gameName}
-            placeholderTextColor={'#b5b5b5'}
-            maxLength={30}
-          />
-
-          <Text style={styles.inputLabels}>Opponent: </Text>
-          <TextInput
-            style={styles.emailInput}
-            onChangeText={this.saveGameOpponent}
-            value={this.state.gameOpponent}
-            placeholderTextColor={'#b5b5b5'}
-            maxLength={20}
-          />
-
-          <Text style={styles.inputLabels}>Notes: </Text>
-          <TextInput
-            multiline
-            style={styles.notesInput}
-            onChangeText={this.saveGameNotes}
-            value={this.state.gameNotes}
-            placeholderTextColor={'#b5b5b5'}
-            maxLength={200}
-          />
-
-          <Text style={styles.inputLabels}>Email Address: </Text>
-          <TextInput
-            style={styles.emailInput}
-            placeholder="Enter Your Email Address"
-            onChangeText={this.saveEmail}
-            keyboardType="email-address"
-            placeholderTextColor={'#b5b5b5'}
-            maxLength={50}
-          />
           {emailWarning}
           {gameSentAlert}
-        </View>
+        </SafeAreaView>
       </ImageBackground>
     );
   }
@@ -291,7 +296,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   inputContainer: {
-    paddingTop: 35,
+    // paddingTop: 35,
     flexDirection: 'column',
     backgroundColor: 'rgba(255, 255, 255, 0.6)',
     height: hp('100%'),
@@ -302,8 +307,9 @@ const styles = StyleSheet.create({
   },
   inputLabels: {
     fontSize: 13,
-    color: '#474747',
-    marginTop: 15,
+    fontWeight: 'bold',
+    color: '#7d7d7d',
+    marginTop: 10,
     marginLeft: 5,
   },
   warningText: {
